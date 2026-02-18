@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Nexus AI</title>
+  <style>
+    body {
+      font-family: Arial;
+      background-color: #0f0f0f;
+      color: white;
+      text-align: center;
+    }
+    .container {
+      width: 80%;
+      margin: auto;
+      margin-top: 50px;
+    }
+    textarea {
+      width: 100%;
+      height: 100px;
+      margin-top: 10px;
+    }
+    button {
+      padding: 10px 20px;
+      margin: 10px;
+      cursor: pointer;
+    }
+    #response {
+      margin-top: 20px;
+      padding: 15px;
+      background: #1c1c1c;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>🤖 Nexus AI</h1>
+
+  <select id="mode">
+    <option value="chat">Mode Chat</option>
+    <option value="code">Mode Code</option>
+  </select>
+
+  <textarea id="userInput" placeholder="Écris ici..."></textarea>
+  <button onclick="sendMessage()">Envoyer</button>
+
+  <div id="response"></div>
+</div>
+
+<script>
+async function sendMessage() {
+  const input = document.getElementById("userInput").value;
+  const mode = document.getElementById("mode").value;
+
+  let systemPrompt = "";
+
+  if (mode === "chat") {
+    systemPrompt = "Tu es Nexus, une IA intelligente et amicale.";
+  } else {
+    systemPrompt = "Tu es Nexus, expert en programmation Java, Python, C++, JavaScript.";
+  }
+
+  const responseDiv = document.getElementById("response");
+  responseDiv.innerHTML = "Nexus réfléchit...";
+
+  // ⚠️ Ici il faudra connecter une API OpenAI
+  responseDiv.innerHTML = "Connexion API nécessaire (je t'explique après)";
+}
+</script>
+
+</body>
+</html>
