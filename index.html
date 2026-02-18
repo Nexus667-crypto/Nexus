@@ -10,27 +10,44 @@ body {
   font-family: system-ui;
   background: #0f0f11;
   color: white;
+  display: flex;
+  height: 100vh;
 }
 
-.header {
-  padding: 18px;
-  font-size: 20px;
-  border-bottom: 1px solid #2a2a2e;
-  text-align: center;
-  background: #16161a;
-}
+/* Sidebar */
 
-.chat {
-  height: calc(100vh - 120px);
-  overflow-y: auto;
+.sidebar {
+  width: 260px;
+  background: #17171c;
+  border-right: 1px solid #2a2a2e;
   padding: 20px;
 }
 
+.logo {
+  font-size: 20px;
+  margin-bottom: 30px;
+  font-weight: bold;
+}
+
+/* Chat area */
+
+.chat-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat {
+  flex: 1;
+  overflow-y: auto;
+  padding: 30px;
+}
+
 .message {
-  max-width: 70%;
+  max-width: 65%;
   padding: 12px;
-  margin-bottom: 15px;
   border-radius: 12px;
+  margin-bottom: 15px;
 }
 
 .user {
@@ -42,14 +59,13 @@ body {
   background: #1f1f23;
 }
 
+/* Input */
+
 .input {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
   display: flex;
   padding: 15px;
-  background: #16161a;
   border-top: 1px solid #2a2a2e;
+  background: #17171c;
 }
 
 input {
@@ -75,13 +91,20 @@ button {
 
 <body>
 
-<div class="header">🤖 Nexus AI (mode privé)</div>
+<div class="sidebar">
+  <div class="logo">🤖 Nexus AI</div>
+  <p>Mode privé</p>
+</div>
 
-<div class="chat" id="chat"></div>
+<div class="chat-container">
 
-<div class="input">
-  <input id="text" placeholder="Écris à Nexus..." />
-  <button onclick="send()">Envoyer</button>
+  <div class="chat" id="chat"></div>
+
+  <div class="input">
+    <input id="text" placeholder="Écris à Nexus..." />
+    <button onclick="send()">Envoyer</button>
+  </div>
+
 </div>
 
 <script>
@@ -90,6 +113,7 @@ function add(text, type) {
   div.className = "message " + type;
   div.innerText = text;
   document.getElementById("chat").appendChild(div);
+  document.getElementById("chat").scrollTop = 999999;
 }
 
 function send() {
